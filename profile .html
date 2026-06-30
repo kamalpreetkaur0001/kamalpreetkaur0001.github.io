@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamalpreet Kaur — Portfolio</title>
+<meta name="description" content="Kamalpreet Kaur — ITI Women Ropar student, B.A. (Punjabi University), based in Ropar, Punjab. Computer enthusiast building digital skills.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #121826;
+    --bg-soft: #171f30;
+    --surface: #1c2538;
+    --surface-2: #232d44;
+    --line: #313e5c;
+    --text: #f4f1ea;
+    --muted: #9aa3bb;
+    --gold: #f2a93b;
+    --gold-soft: #f2a93b33;
+    --rose: #e8527a;
+    --rose-soft: #e8527a2e;
+    --cream: #faf7f2;
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+
+  .font-display{ font-family:'Fraunces', serif; }
+  .font-mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* background texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(242,169,59,0.10), transparent 40%),
+      radial-gradient(circle at 88% 8%, rgba(232,82,122,0.10), transparent 35%),
+      radial-gradient(circle at 50% 100%, rgba(242,169,59,0.05), transparent 45%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  ::selection{ background: var(--gold); color:#1a1a1a; }
+
+  /* scroll progress thread */
+  #stitch-progress{
+    position:fixed; top:0; left:0; height:3px; width:100%;
+    z-index:100; background: rgba(255,255,255,0.04);
+  }
+  #stitch-progress-bar{
+    height:100%; width:0%;
+    background: repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 16px);
+    transition: width .08s linear;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .container{ max-width:1120px; margin:0 auto; padding-left:1.5rem; padding-right:1.5rem; }
+
+  /* NAV */
+  header{
+    position:fixed; top:3px; left:0; right:0; z-index:90;
+    background: rgba(18,24,38,0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; max-width:1120px; margin:0 auto; }
+  .logo{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem; letter-spacing:0.02em;
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .logo .mark{
+    width:34px; height:34px; border-radius:8px;
+    background: linear-gradient(135deg, var(--gold), var(--rose));
+    display:flex; align-items:center; justify-content:center;
+    color:#161616; font-weight:700; font-size:.85rem; font-family:'JetBrains Mono',monospace;
+  }
+  .nav-links{ display:flex; gap:2.2rem; align-items:center; }
+  .nav-links a{
+    font-size:.92rem; color: var(--muted); font-weight:500; position:relative; padding:.25rem 0;
+    transition: color .25s ease;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--gold);
+    transition: width .25s ease;
+  }
+  .nav-links a:hover{ color: var(--text); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace; font-size:.78rem; padding:.55rem 1.1rem;
+    border:1px solid var(--gold); border-radius:999px; color: var(--gold) !important;
+    transition: all .25s ease;
+  }
+  .nav-cta:hover{ background: var(--gold); color:#161616 !important; }
+  .nav-cta::after{ display:none; }
+
+  #menu-btn{ display:none; background:none; border:none; cursor:pointer; padding:.4rem; z-index:120; }
+  #menu-btn span{ display:block; width:22px; height:2px; background:var(--text); margin:5px 0; transition:.3s; border-radius:2px; }
+
+  #mobile-menu{
+    position:fixed; inset:0; background: var(--bg); z-index:110;
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:2rem; padding:2.5rem;
+    transform: translateX(100%); transition: transform .4s cubic-bezier(.65,0,.35,1);
+  }
+  #mobile-menu.open{ transform: translateX(0); }
+  #mobile-menu a{ font-family:'Fraunces', serif; font-size:2rem; font-weight:500; color:var(--text); }
+  #mobile-menu .meta{ font-family:'JetBrains Mono', monospace; color:var(--muted); font-size:.8rem; margin-top:1rem;}
+
+  /* HERO */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    position:relative; padding:7rem 0 4rem; z-index:1;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+    color: var(--gold); display:flex; align-items:center; gap:.6rem; margin-bottom:1.5rem;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px var(--gold-soft); }
+
+  .hero h1{
+    font-family:'Fraunces', serif; font-weight:600; line-height:0.98;
+    font-size: clamp(3rem, 9vw, 6.2rem); letter-spacing:-0.01em;
+  }
+  .hero h1 em{ font-style:italic; font-weight:500; color: var(--gold); }
+
+  .hero-sub{
+    margin-top:1.6rem; max-width:540px; color: var(--muted); font-size:1.08rem;
+  }
+
+  .chip-row{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.8rem; }
+  .chip{
+    font-family:'JetBrains Mono', monospace; font-size:.78rem; padding:.5rem 1rem;
+    border:1px solid var(--line); border-radius:999px; color:var(--muted);
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .chip .sq{ width:6px;height:6px; background:var(--rose); transform:rotate(45deg);}
+
+  .hero-cta{ display:flex; gap:1rem; margin-top:2.6rem; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--gold); color:#161616; font-weight:600; padding:.9rem 1.7rem; border-radius:10px;
+    font-size:.95rem; transition: transform .25s ease, box-shadow .25s ease; display:inline-flex; align-items:center; gap:.5rem;
+  }
+  .btn-primary:hover{ transform: translateY(-3px); box-shadow:0 10px 24px -8px rgba(242,169,59,.5); }
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--text); padding:.9rem 1.7rem; border-radius:10px; font-size:.95rem;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .btn-ghost:hover{ border-color: var(--rose); background: rgba(232,82,122,0.08); }
+
+  .hero-monogram{
+    position:absolute; right:0; top:50%; transform:translateY(-50%);
+    font-family:'Fraunces', serif; font-size:min(40vw, 420px); font-weight:700; color: rgba(255,255,255,0.025);
+    line-height:1; user-select:none; pointer-events:none; z-index:-1;
+  }
+
+  .scroll-hint{
+    position:absolute; bottom:2rem; left:1.5rem; display:flex; align-items:center; gap:.6rem;
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--muted);
+  }
+  .scroll-hint .line{ width:28px; height:1px; background:var(--muted); position:relative; overflow:hidden; }
+  .scroll-hint .line::after{
+    content:""; position:absolute; left:-100%; top:0; width:100%; height:100%; background:var(--gold);
+    animation: scrollline 2s ease-in-out infinite;
+  }
+  @keyframes scrollline{ 0%{left:-100%;} 50%{left:0;} 100%{left:100%;} }
+
+  /* SECTION GENERIC */
+  section{ position:relative; z-index:1; padding: 6.5rem 0; }
+  .section-head{ margin-bottom:3.5rem; max-width:620px; }
+  .label{
+    font-family:'JetBrains Mono', monospace; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--rose);
+    display:block; margin-bottom:.9rem;
+  }
+  .section-head h2{ font-family:'Fraunces', serif; font-size: clamp(2rem, 4.5vw, 3.1rem); font-weight:600; }
+  .section-head p{ color:var(--muted); margin-top:1rem; font-size:1.02rem; }
+
+  .reveal{ opacity:0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:3.5rem; align-items:start; }
+  .about-text p{ color:var(--muted); margin-bottom:1.1rem; font-size:1.02rem; }
+  .about-text strong{ color:var(--text); font-weight:600; }
+
+  .stat-card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius);
+    padding:1.6rem; display:flex; flex-direction:column; gap:.3rem;
+  }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .stat-num{ font-family:'Fraunces', serif; font-size:2.2rem; font-weight:600; color:var(--gold); }
+  .stat-label{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;}
+
+  /* EDUCATION TIMELINE */
+  .timeline{ position:relative; padding-left:2.2rem; }
+  .timeline::before{
+    content:""; position:absolute; left:6px; top:6px; bottom:6px; width:1px;
+    background-image: linear-gradient(var(--line) 60%, transparent 0%);
+    background-size: 1px 10px; background-repeat:repeat-y;
+  }
+  .t-item{ position:relative; padding-bottom:3rem; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:""; position:absolute; left:-2.2rem; top:4px; width:13px; height:13px; border-radius:50%;
+    background: var(--bg); border:2px solid var(--gold);
+  }
+  .t-item.current::before{ background: var(--gold); box-shadow:0 0 0 5px var(--gold-soft); }
+  .t-tag{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--gold); text-transform:uppercase; letter-spacing:.08em;}
+  .t-item h3{ font-family:'Fraunces', serif; font-size:1.5rem; margin-top:.4rem; font-weight:600;}
+  .t-item .org{ color:var(--rose); font-size:.95rem; margin-top:.25rem; font-weight:500;}
+  .t-item p{ color:var(--muted); margin-top:.7rem; max-width:560px; }
+
+  /* SKILLS */
+  .skills-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1.1rem; }
+  .skill-card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius);
+    padding:1.6rem; transition: transform .3s ease, border-color .3s ease, background .3s ease;
+  }
+  .skill-card:hover{ transform: translateY(-6px); border-color: var(--gold); background: var(--surface-2); }
+  .skill-icon{
+    width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    background: var(--gold-soft); color:var(--gold); margin-bottom:1.1rem; font-size:1.2rem;
+  }
+  .skill-card h3{ font-weight:600; font-size:1.05rem; margin-bottom:.45rem; }
+  .skill-card p{ color:var(--muted); font-size:.88rem; }
+
+  .interest-bar-wrap{ margin-top:3.2rem; }
+  .interest-row{ display:flex; align-items:center; gap:1rem; margin-bottom:1.1rem; }
+  .interest-row .name{ width:160px; font-size:.88rem; color:var(--muted); flex-shrink:0; font-family:'JetBrains Mono', monospace;}
+  .interest-track{ flex:1; height:6px; background:var(--surface-2); border-radius:99px; overflow:hidden; }
+  .interest-fill{ height:100%; border-radius:99px; background: linear-gradient(90deg, var(--gold), var(--rose)); width:0%; transition: width 1.4s cubic-bezier(.22,1,.36,1); }
+
+  /* CONTACT */
+  .contact-wrap{
+    background: var(--surface); border:1px solid var(--line); border-radius:20px; padding: 3.2rem;
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:3rem;
+    position:relative; overflow:hidden;
+  }
+  .contact-wrap::before{
+    content:""; position:absolute; top:-40%; right:-15%; width:340px; height:340px; border-radius:50%;
+    background: radial-gradient(circle, var(--rose-soft), transparent 70%); pointer-events:none;
+  }
+  .contact-info h2{ font-family:'Fraunces', serif; font-size:2.4rem; font-weight:600; }
+  .contact-info p{ color:var(--muted); margin-top:1rem; max-width:380px; }
+  .contact-links{ margin-top:2rem; display:flex; flex-direction:column; gap:.9rem; }
+  .contact-links a{
+    display:flex; align-items:center; gap:.8rem; color:var(--text); font-size:.95rem; width:fit-content;
+    border-bottom:1px solid transparent; padding-bottom:2px; transition: border-color .25s ease, color .25s ease;
+  }
+  .contact-links a:hover{ border-color: var(--gold); color:var(--gold); }
+  .contact-links .ic{
+    width:34px; height:34px; border-radius:8px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0;
+  }
+
+  .form-group{ margin-bottom:1.2rem; }
+  .form-group label{ display:block; font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:.5rem;}
+  .form-group input, .form-group textarea{
+    width:100%; background: var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:.85rem 1rem;
+    color: var(--text); font-family:'Inter', sans-serif; font-size:.95rem; transition: border-color .25s ease;
+  }
+  .form-group input:focus, .form-group textarea:focus{ outline:none; border-color: var(--gold); }
+  .form-group textarea{ resize:vertical; min-height:110px; }
+  .submit-btn{
+    background: var(--rose); color:#fff; font-weight:600; padding:.9rem 1.8rem; border-radius:10px; border:none;
+    font-size:.95rem; cursor:pointer; transition: transform .25s ease, box-shadow .25s ease; font-family:'Inter', sans-serif;
+  }
+  .submit-btn:hover{ transform: translateY(-3px); box-shadow:0 10px 24px -8px rgba(232,82,122,.5); }
+  .form-note{ font-size:.78rem; color:var(--muted); margin-top:.8rem; font-family:'JetBrains Mono', monospace;}
+
+  footer{
+    border-top:1px solid var(--line); padding:2.2rem 0; text-align:center; color:var(--muted);
+    font-family:'JetBrains Mono', monospace; font-size:.78rem; position:relative; z-index:1;
+  }
+  footer .heart{ color:var(--rose); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    #menu-btn{ display:block; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:repeat(2, 1fr); }
+    .contact-wrap{ grid-template-columns:1fr; padding:2.2rem; }
+  }
+  @media (max-width: 560px){
+    .skills-grid{ grid-template-columns:1fr; }
+    section{ padding:4.5rem 0; }
+    .hero{ padding-top:6.5rem; }
+    .interest-row .name{ width:110px; font-size:.76rem; }
+    .contact-wrap{ padding:1.6rem; }
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--gold); outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<div id="stitch-progress"><div id="stitch-progress-bar"></div></div>
+
+<header>
+  <nav>
+    <a href="#top" class="logo"><span class="mark">KK</span> Kamalpreet</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button id="menu-btn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div id="mobile-menu">
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+  <span class="meta">Ropar, Punjab · 21</span>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-monogram" aria-hidden="true">KK</div>
+    <div class="eyebrow"><span class="dot"></span> Ropar, Punjab — Computer Enthusiast</div>
+    <h1 class="reveal in">Kamalpreet <em>Kaur</em></h1>
+    <p class="hero-sub reveal in" style="transition-delay:.1s">
+      21-year-old learner from Ropar, building a foundation in computers — currently pursuing ITI at
+      Women ITI Ropar alongside a B.A. (Private) from Punjabi University. Curious, consistent, and
+      computer-obsessed in the best way.
+    </p>
+    <div class="chip-row reveal in" style="transition-delay:.18s">
+      <span class="chip"><span class="sq"></span> ITI — Women ITI, Ropar</span>
+      <span class="chip"><span class="sq"></span> B.A. (Private) — Punjabi University</span>
+      <span class="chip"><span class="sq"></span> Based in Ropar, Punjab</span>
+    </div>
+    <div class="hero-cta reveal in" style="transition-delay:.26s">
+      <a href="#skills" class="btn-primary">View my skills →</a>
+      <a href="#contact" class="btn-ghost">Get in touch</a>
+    </div>
+    <div class="scroll-hint"><span class="line"></span> SCROLL</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <div class="section-head reveal">
+      <span class="label">01 — About</span>
+      <h2>A learner finding her way into tech.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm <strong>Kamalpreet Kaur</strong>, 21 years old, from <strong>Ropar, Punjab</strong>.
+          I'm currently studying at <strong>Women ITI, Ropar</strong>, while also completing my
+          <strong>B.A. privately through Punjabi University</strong>. Balancing both has taught me how to
+          stay organised, manage my time, and keep showing up for my goals.
+        </p>
+        <p>
+          My interest lies in <strong>computers</strong> — from understanding how systems work to
+          getting comfortable with everyday software, the internet, and the basics of how technology
+          fits together. I'm early in this journey, but genuinely enjoy the process of learning something
+          new every day.
+        </p>
+        <p>
+          This page itself is part of that journey — a small project to put what I'm learning into practice.
+        </p>
+      </div>
+      <div class="stat-grid reveal" style="transition-delay:.1s">
+        <div class="stat-card"><span class="stat-num">21</span><span class="stat-label">Years old</span></div>
+        <div class="stat-card"><span class="stat-num">2</span><span class="stat-label">Programmes ongoing</span></div>
+        <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label">Computer focused</span></div>
+        <div class="stat-card"><span class="stat-num">RPR</span><span class="stat-label">Ropar, Punjab</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="container">
+    <div class="section-head reveal">
+      <span class="label">02 — Education</span>
+      <h2>Two paths, one direction.</h2>
+      <p>Currently pursuing a technical qualification and an undergraduate degree side by side.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item current reveal">
+        <span class="t-tag">In progress</span>
+        <h3>ITI — Information Technology</h3>
+        <div class="org">Women ITI, Ropar</div>
+        <p>Building hands-on, practical skills in computer applications and technical fundamentals as
+        part of my Industrial Training Institute programme, focused entirely on women's technical education.</p>
+      </div>
+      <div class="t-item current reveal" style="transition-delay:.1s">
+        <span class="t-tag">In progress · Private</span>
+        <h3>B.A. (Bachelor of Arts)</h3>
+        <div class="org">Punjabi University</div>
+        <p>Pursuing my undergraduate degree privately, studying independently alongside my ITI coursework
+        to broaden my academic foundation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container">
+    <div class="section-head reveal">
+      <span class="label">03 — Skills</span>
+      <h2>What I'm building expertise in.</h2>
+      <p>Core computer skills I'm developing through my ITI coursework and self-practice.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">💻</div>
+        <h3>Computer Fundamentals</h3>
+        <p>Operating systems, file management, and core hardware/software concepts.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.05s">
+        <div class="skill-icon">📊</div>
+        <h3>MS Office Suite</h3>
+        <p>Word, Excel and PowerPoint for documents, spreadsheets and presentations.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.1s">
+        <div class="skill-icon">🌐</div>
+        <h3>Internet &amp; Email</h3>
+        <p>Web research, professional email etiquette, and online communication tools.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.15s">
+        <div class="skill-icon">⌨️</div>
+        <h3>Typing &amp; Data Entry</h3>
+        <p>Accurate, efficient typing and data handling for administrative and technical work.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.2s">
+        <div class="skill-icon">🛠️</div>
+        <h3>Hardware Basics</h3>
+        <p>Understanding computer components, assembly, and basic troubleshooting.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.25s">
+        <div class="skill-icon">📚</div>
+        <h3>Continuous Learning</h3>
+        <p>Self-driven study habits built from managing ITI and university coursework together.</p>
+      </div>
+    </div>
+
+    <div class="interest-bar-wrap">
+      <div class="interest-row reveal">
+        <span class="name">Computer Basics</span>
+        <div class="interest-track"><div class="interest-fill" data-width="90"></div></div>
+      </div>
+      <div class="interest-row reveal">
+        <span class="name">MS Office</span>
+        <div class="interest-track"><div class="interest-fill" data-width="80"></div></div>
+      </div>
+      <div class="interest-row reveal">
+        <span class="name">Internet Tools</span>
+        <div class="interest-track"><div class="interest-fill" data-width="85"></div></div>
+      </div>
+      <div class="interest-row reveal">
+        <span class="name">Typing Speed</span>
+        <div class="interest-track"><div class="interest-fill" data-width="70"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <div class="contact-wrap reveal">
+      <div class="contact-info">
+        <span class="label">04 — Contact</span>
+        <h2>Let's connect.</h2>
+        <p>Open to opportunities, guidance, and conversations around computers and tech.
+        Reach out — I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:kamalpreet.kaur@example.com"><span class="ic">✉️</span> kamalpreet.kaur@example.com</a>
+          <a href="tel:+910000000000"><span class="ic">📞</span> +91 00000 00000</a>
+          <a href="#"><span class="ic">📍</span> Ropar, Punjab, India</a>
+        </div>
+      </div>
+      <form id="contact-form" onsubmit="return handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Write your message..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send message</button>
+        <p class="form-note" id="form-status">This form is a UI demo — connect it to a backend or service like Formspree to receive messages.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">Designed &amp; built with <span class="heart">♥</span> by Kamalpreet Kaur — Ropar, Punjab · © <span id="year"></span></div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll progress (stitch line)
+  const bar = document.getElementById('stitch-progress-bar');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = scrolled + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Skill bars fill on view
+  const bars = document.querySelectorAll('.interest-fill');
+  const barIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const el = entry.target;
+        el.style.width = el.dataset.width + '%';
+        barIo.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  bars.forEach(b => barIo.observe(b));
+
+  // Contact form (demo only)
+  function handleSubmit(e){
+    e.preventDefault();
+    const status = document.getElementById('form-status');
+    status.textContent = 'Thanks! This is a demo form — connect a backend (e.g. Formspree) to actually receive messages.';
+    status.style.color = 'var(--gold)';
+    document.getElementById('contact-form').reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>
