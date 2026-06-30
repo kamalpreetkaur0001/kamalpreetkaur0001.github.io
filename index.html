@@ -87,3 +87,922 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
         }
+
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-left {
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-fade-right {
+            opacity: 0;
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-bar-fill {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .skill-bar-fill.filled {
+            /* width set via inline style */
+        }
+
+        .hero-img-overlay {
+            background: linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.6) 40%, rgba(10,10,10,0.2) 100%);
+        }
+
+        .decorative-ring {
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #C5A059;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, #C5A059, transparent);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #C5A059;
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .toast {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C5A059; }
+    </style>
+</head>
+<body class="bg-dark font-inter text-white antialiased overflow-x-hidden">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-300">
+                    <span class="font-oswald text-gold text-lg font-semibold">K</span>
+                </div>
+                <span class="font-oswald text-xl tracking-tight hidden sm:block">KAMALPREET</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-link text-sm font-medium tracking-wide text-zinc-400 hover:text-white transition-colors duration-150 active">Home</a>
+                <a href="#about" class="nav-link text-sm font-medium tracking-wide text-zinc-400 hover:text-white transition-colors duration-150">About</a>
+                <a href="#education" class="nav-link text-sm font-medium tracking-wide text-zinc-400 hover:text-white transition-colors duration-150">Education</a>
+                <a href="#skills" class="nav-link text-sm font-medium tracking-wide text-zinc-400 hover:text-white transition-colors duration-150">Skills</a>
+                <a href="#contact" class="nav-link text-sm font-medium tracking-wide text-zinc-400 hover:text-white transition-colors duration-150">Contact</a>
+                <a href="#contact" class="ml-2 px-6 py-2.5 bg-gold text-dark text-sm font-semibold tracking-wide rounded-sm hover:bg-gold-light transition-colors duration-150 gold-glow">
+                    Hire Me
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 group" aria-label="Open menu">
+                <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="bar1"></span>
+                <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+                <span class="w-4 h-0.5 bg-white transition-all duration-300 origin-center group-hover:w-6" id="bar3"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-dark/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+        <button id="closeMenu" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center" aria-label="Close menu">
+            <i data-lucide="x" class="w-6 h-6 text-white"></i>
+        </button>
+        <a href="#home" class="mobile-nav-link font-oswald text-3xl tracking-wide text-zinc-300 hover:text-gold transition-colors">Home</a>
+        <a href="#about" class="mobile-nav-link font-oswald text-3xl tracking-wide text-zinc-300 hover:text-gold transition-colors">About</a>
+        <a href="#education" class="mobile-nav-link font-oswald text-3xl tracking-wide text-zinc-300 hover:text-gold transition-colors">Education</a>
+        <a href="#skills" class="mobile-nav-link font-oswald text-3xl tracking-wide text-zinc-300 hover:text-gold transition-colors">Skills</a>
+        <a href="#contact" class="mobile-nav-link font-oswald text-3xl tracking-wide text-zinc-300 hover:text-gold transition-colors">Contact</a>
+        <a href="#contact" class="mt-4 px-8 py-3 bg-gold text-dark font-semibold tracking-wide rounded-sm gold-glow">Hire Me</a>
+    </div>
+
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/seed/kamalpreet-hero/1920/1080.jpg" alt="" class="w-full h-full object-cover opacity-30 grayscale">
+            <div class="hero-img-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="decorative-ring w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin-slow"></div>
+        <div class="decorative-ring w-[700px] h-[700px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin-slow" style="animation-direction: reverse; animation-duration: 30s;"></div>
+
+        <!-- Gold accent dots -->
+        <div class="absolute top-32 left-[15%] w-2 h-2 bg-gold/40 rounded-full animate-float"></div>
+        <div class="absolute top-48 right-[20%] w-1.5 h-1.5 bg-gold/30 rounded-full animate-float" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-32 left-[25%] w-1 h-1 bg-gold/50 rounded-full animate-float" style="animation-delay: 2s;"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <!-- Tag -->
+            <div class="animate-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 bg-gold/5 mb-8">
+                <span class="w-2 h-2 bg-gold rounded-full animate-pulse"></span>
+                <span class="text-xs font-medium tracking-widest uppercase text-gold">Available for Opportunities</span>
+            </div>
+
+            <!-- Name -->
+            <h1 class="animate-fade-up delay-200 font-oswald text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[0.95] mb-6">
+                <span class="text-gradient">Kamalpreet</span><br>
+                <span class="text-gold">Kaur</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="animate-fade-up delay-400 text-lg md:text-xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                A passionate <span class="text-white font-normal">computer enthusiast</span> from Ropar, 
+                building skills and exploring the world of technology, one step at a time.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="animate-fade-up delay-600 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#about" class="group px-8 py-4 bg-gold text-dark font-semibold text-sm tracking-wide rounded-sm gold-glow hover:bg-gold-light transition-all duration-150 flex items-center gap-2">
+                    Know More About Me
+                    <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+                </a>
+                <a href="#contact" class="px-8 py-4 border border-white/10 text-white font-medium text-sm tracking-wide rounded-sm hover:border-gold/40 hover:bg-white/5 transition-all duration-300">
+                    Get In Touch
+                </a>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="animate-fade-up delay-800 mt-16 flex flex-col items-center gap-2">
+                <span class="text-[10px] tracking-widest uppercase text-zinc-600">Scroll Down</span>
+                <div class="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about" class="relative py-24 md:py-32 overflow-hidden">
+        <!-- Background accent -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-medium tracking-widest uppercase text-gold mb-4 block">Get To Know Me</span>
+                <h2 class="font-oswald text-4xl md:text-5xl font-medium tracking-tight text-gradient">About Me</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Image Side -->
+                <div class="scroll-reveal relative group">
+                    <div class="relative overflow-hidden rounded-sm">
+                        <img src="https://picsum.photos/seed/kamalpreet-portrait/600/750.jpg" alt="Kamalpreet Kaur" class="w-full h-[400px] md:h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105">
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+                    </div>
+
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-4 -right-4 md:bottom-8 md:-right-8 glass-card p-4 rounded-sm animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-zinc-500 uppercase tracking-wider">From</p>
+                                <p class="text-sm font-medium text-white">Ropar, Punjab</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decorative border -->
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none"></div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none hidden md:block"></div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="scroll-reveal" style="transition-delay: 0.2s;">
+                    <h3 class="font-oswald text-2xl md:text-3xl font-normal tracking-tight text-white mb-6">
+                        Hello! I'm <span class="text-gold">Kamalpreet</span>, a 21-year-old tech enthusiast.
+                    </h3>
+                    
+                    <div class="space-y-4 text-zinc-400 font-light leading-relaxed text-base md:text-lg">
+                        <p>
+                            I am from <span class="text-white font-normal">Ropar, Punjab</span>, and I have always been fascinated by computers and technology. My journey in the digital world began with simple curiosity, and it has now grown into a deep passion that drives my learning every day.
+                        </p>
+                        <p>
+                            After completing my <span class="text-white font-normal">12th standard in 2022</span>, I decided to pursue my interest in computers formally. Currently, I am studying at <span class="text-white font-normal">ITI Women, Ropar</span>, where I am gaining practical knowledge and hands-on experience in the field of computer technology.
+                        </p>
+                        <p>
+                            I believe in continuous learning and am always eager to explore new tools, technologies, and opportunities that help me grow as a professional in the tech space.
+                        </p>
+                    </div>
+
+                    <!-- Quick Info Cards -->
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="glass-card p-4 rounded-sm card-hover">
+                            <i data-lucide="user" class="w-5 h-5 text-gold mb-2"></i>
+                            <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Name</p>
+                            <p class="text-sm font-medium text-white">Kamalpreet Kaur</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-sm card-hover">
+                            <i data-lucide="cake" class="w-5 h-5 text-gold mb-2"></i>
+                            <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Age</p>
+                            <p class="text-sm font-medium text-white">21 Years</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-sm card-hover">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-gold mb-2"></i>
+                            <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Education</p>
+                            <p class="text-sm font-medium text-white">ITI Women, Ropar</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-sm card-hover">
+                            <i data-lucide="heart" class="w-5 h-5 text-gold mb-2"></i>
+                            <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Interest</p>
+                            <p class="text-sm font-medium text-white">Computers</p>
+                        </div>
+                    </div>
+
+                    <!-- Download CV Button -->
+                    <div class="mt-8">
+                        <button onclick="showToast('Resume will be available soon!')" class="group inline-flex items-center gap-3 px-6 py-3 border border-gold/30 text-gold text-sm font-medium tracking-wide rounded-sm hover:bg-gold/10 transition-all duration-300">
+                            <i data-lucide="download" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+                            Download Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== EDUCATION SECTION ========== -->
+    <section id="education" class="relative py-24 md:py-32 bg-dark-100">
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-medium tracking-widest uppercase text-gold mb-4 block">My Journey</span>
+                <h2 class="font-oswald text-4xl md:text-5xl font-medium tracking-tight text-gradient">Education</h2>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative max-w-3xl mx-auto">
+                <!-- Timeline Line -->
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px timeline-line md:-translate-x-px"></div>
+
+                <!-- Item 1: 12th -->
+                <div class="scroll-reveal relative flex flex-col md:flex-row items-start mb-16 md:mb-20">
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 w-3 h-3 bg-gold rounded-full -translate-x-1.5 mt-1.5 animate-pulse-gold z-10"></div>
+
+                    <!-- Content Left (Desktop) -->
+                    <div class="hidden md:block md:w-1/2 md:pr-12 md:text-right">
+                        <div class="glass-card p-6 rounded-sm card-hover inline-block text-left">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-[10px] font-medium tracking-widest uppercase text-gold">2022</span>
+                            </div>
+                            <h3 class="font-oswald text-xl font-normal tracking-tight text-white mb-2">12th Standard — Passed Out</h3>
+                            <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                                Successfully completed my senior secondary education (12th class) in 2022, building a strong academic foundation that paved the way for my technical journey.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Spacer (Desktop) -->
+                    <div class="hidden md:block md:w-1/2"></div>
+
+                    <!-- Mobile Content -->
+                    <div class="md:hidden ml-14">
+                        <div class="glass-card p-6 rounded-sm card-hover">
+                            <span class="inline-block px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-[10px] font-medium tracking-widest uppercase text-gold mb-3">2022</span>
+                            <h3 class="font-oswald text-xl font-normal tracking-tight text-white mb-2">12th Standard — Passed Out</h3>
+                            <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                                Successfully completed my senior secondary education (12th class) in 2022, building a strong academic foundation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: ITI -->
+                <div class="scroll-reveal relative flex flex-col md:flex-row items-start" style="transition-delay: 0.2s;">
+                    <!-- Dot -->
+                    <div class="absolute left-6 md:left-1/2 w-3 h-3 bg-gold rounded-full -translate-x-1.5 mt-1.5 animate-pulse-gold z-10"></div>
+
+                    <!-- Spacer (Desktop) -->
+                    <div class="hidden md:block md:w-1/2"></div>
+
+                    <!-- Content Right (Desktop) -->
+                    <div class="hidden md:block md:w-1/2 md:pl-12">
+                        <div class="glass-card p-6 rounded-sm card-hover inline-block relative">
+                            <div class="absolute -top-3 -right-3 px-3 py-1 bg-gold text-dark rounded-full text-[10px] font-semibold tracking-widest uppercase">Current</div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-[10px] font-medium tracking-widest uppercase text-gold">2023 — Present</span>
+                            </div>
+                            <h3 class="font-oswald text-xl font-normal tracking-tight text-white mb-2">ITI Women, Ropar</h3>
+                            <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                                Currently pursuing my technical education at ITI Women, Ropar, specializing in computer-related trades. Gaining hands-on experience with practical skills, tools, and real-world applications of technology.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Content -->
+                    <div class="md:hidden ml-14">
+                        <div class="glass-card p-6 rounded-sm card-hover relative">
+                            <div class="absolute -top-3 -right-3 px-3 py-1 bg-gold text-dark rounded-full text-[10px] font-semibold tracking-widest uppercase">Current</div>
+                            <span class="inline-block px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-[10px] font-medium tracking-widest uppercase text-gold mb-3">2023 — Present</span>
+                            <h3 class="font-oswald text-xl font-normal tracking-tight text-white mb-2">ITI Women, Ropar</h3>
+                            <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                                Currently pursuing technical education at ITI Women, Ropar, specializing in computer-related trades with hands-on practical training.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SKILLS SECTION ========== -->
+    <section id="skills" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute top-1/2 right-0 w-72 h-72 bg-gold/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-medium tracking-widest uppercase text-gold mb-4 block">What I Know</span>
+                <h2 class="font-oswald text-4xl md:text-5xl font-medium tracking-tight text-gradient">Skills & Interests</h2>
+                <p class="mt-4 text-zinc-500 font-light max-w-xl mx-auto">
+                    Continuously learning and growing in the field of computer technology.
+                </p>
+            </div>
+
+            <!-- Skill Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill 1 -->
+                <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group">
+                    <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="monitor" class="w-5 h-5 text-gold"></i>
+                    </div>
+                    <h3 class="font-oswald text-lg tracking-tight text-white mb-2">Computer Basics</h3>
+                    <p class="text-zinc-500 font-light text-sm leading-relaxed">
+                        Strong foundation in computer fundamentals, operating systems, file management, and digital literacy.
+                    </p>
+                    <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="skill-bar-fill h-full bg-gradient-to-r from-gold-dark to-gold rounded-full" data-width="85%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="file-text" class="w-5 h-5 text-gold"></i>
+                    </div>
+                    <h3 class="font-oswald text-lg tracking-tight text-white mb-2">MS Office Suite</h3>
+                    <p class="text-zinc-500 font-light text-sm leading-relaxed">
+                        Proficient in Microsoft Word, Excel, PowerPoint for creating documents, spreadsheets, and presentations.
+                    </p>
+                    <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="skill-bar-fill h-full bg-gradient-to-r from-gold-dark to-gold rounded-full" data-width="80%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="globe" class="w-5 h-5 text-gold"></i>
+                    </div>
+                    <h3 class="font-oswald text-lg tracking-tight text-white mb-2">Internet & Web</h3>
+                    <p class="text-zinc-500 font-light text-sm leading-relaxed">
+                        Good understanding of internet browsing, email communication, online research, and web navigation.
+                    </p>
+                    <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="skill-bar-fill h-full bg-gradient-to-r from-gold-dark to-gold rounded-full" data-width="78%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="type" class="w-5 h-5 text-gold"></i>
+                    </div>
+                    <h3 class="font-oswald text-lg tracking-tight text-white mb-2">Typing Skills</h3>
+                    <p class="text-zinc-500 font-light text-sm leading-relaxed">
+                        Fast and accurate typing skills in both English and Punjabi, essential for data entry and documentation work.
+                    </p>
+                    <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="skill-bar-fill h-full bg-gradient-to-r from-gold-dark to-gold rounded-full" data-width="82%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.4s;">
+                    <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="database" class="w-5 h-5 text-gold"></i>
+                    </div>
+                    <h3 class="font-oswald text-lg tracking-tight text-white mb-2">Data Entry</h3>
+                    <p class="text-zinc-500 font-light text-sm leading-relaxed">
+                        Experienced in data entry operations, maintaining records, and organizing information in digital formats.
+                    </p>
+                    <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="skill-bar-fill h-full bg-gradient-to-r from-gold-dark to-gold rounded-full" data-width="75%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.5s;">
+                    <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-gold"></i>
+                    </div>
+                    <h3 class="font-oswald text-lg tracking-tight text-white mb-2">Eager Learner</h3>
+                    <p class="text-zinc-500 font-light text-sm leading-relaxed">
+                        Always curious and ready to learn new technologies, software tools, and skills that enhance my capabilities.
+                    </p>
+                    <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div class="skill-bar-fill h-full bg-gradient-to-r from-gold-dark to-gold rounded-full" data-width="95%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Interests -->
+            <div class="scroll-reveal mt-12 glass-card p-8 rounded-sm">
+                <h3 class="font-oswald text-xl tracking-tight text-white mb-6 text-center">Other Interests</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="px-4 py-2 border border-white/10 rounded-full text-sm text-zinc-400 hover:border-gold/30 hover:text-gold transition-all duration-300 cursor-default">💻 Technology</span>
+                    <span class="px-4 py-2 border border-white/10 rounded-full text-sm text-zinc-400 hover:border-gold/30 hover:text-gold transition-all duration-300 cursor-default">📚 Learning</span>
+                    <span class="px-4 py-2 border border-white/10 rounded-full text-sm text-zinc-400 hover:border-gold/30 hover:text-gold transition-all duration-300 cursor-default">🎨 Creativity</span>
+                    <span class="px-4 py-2 border border-white/10 rounded-full text-sm text-zinc-400 hover:border-gold/30 hover:text-gold transition-all duration-300 cursor-default">🤝 Teamwork</span>
+                    <span class="px-4 py-2 border border-white/10 rounded-full text-sm text-zinc-400 hover:border-gold/30 hover:text-gold transition-all duration-300 cursor-default">📱 Digital Tools</span>
+                    <span class="px-4 py-2 border border-white/10 rounded-full text-sm text-zinc-400 hover:border-gold/30 hover:text-gold transition-all duration-300 cursor-default">🌐 Web Surfing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== QUOTE / MOTIVATION SECTION ========== -->
+    <section class="relative py-20 md:py-28 bg-dark-100 overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-10 left-10 font-oswald text-[200px] md:text-[300px] text-white leading-none select-none">"</div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="scroll-reveal">
+                <i data-lucide="quote" class="w-10 h-10 text-gold/30 mx-auto mb-6"></i>
+                <blockquote class="font-oswald text-2xl md:text-4xl font-light tracking-tight text-white/90 leading-snug mb-8">
+                    The only way to do great work is to love what you do. 
+                    If you haven't found it yet, <span class="text-gold">keep looking.</span>
+                </blockquote>
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-8 h-px bg-gold/40"></div>
+                    <span class="text-sm text-zinc-500 tracking-wide">Steve Jobs</span>
+                    <div class="w-8 h-px bg-gold/40"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-medium tracking-widest uppercase text-gold mb-4 block">Let's Connect</span>
+                <h2 class="font-oswald text-4xl md:text-5xl font-medium tracking-tight text-gradient">Get In Touch</h2>
+                <p class="mt-4 text-zinc-500 font-light max-w-xl mx-auto">
+                    I'm always open to new opportunities, conversations, and connections. Feel free to reach out!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+                <!-- Contact Info -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white text-sm mb-1">Location</h4>
+                                <p class="text-zinc-500 font-light text-sm">Ropar, Punjab, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.1s;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white text-sm mb-1">Institution</h4>
+                                <p class="text-zinc-500 font-light text-sm">ITI Women, Ropar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scroll-reveal glass-card p-6 rounded-sm card-hover group" style="transition-delay: 0.2s;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="mail" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white text-sm mb-1">Email</h4>
+                                <p class="text-zinc-500 font-light text-sm">kamalpreetkaur@email.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="scroll-reveal pt-4" style="transition-delay: 0.3s;">
+                        <p class="text-xs text-zinc-600 uppercase tracking-widest mb-4">Follow Me</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 hover:border-gold/40 hover:text-gold hover:bg-gold/5 transition-all duration-300" aria-label="Instagram">
+                                <i data-lucide="instagram" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 hover:border-gold/40 hover:text-gold hover:bg-gold/5 transition-all duration-300" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 hover:border-gold/40 hover:text-gold hover:bg-gold/5 transition-all duration-300" aria-label="Twitter">
+                                <i data-lucide="twitter" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 hover:border-gold/40 hover:text-gold hover:bg-gold/5 transition-all duration-300" aria-label="GitHub">
+                                <i data-lucide="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-3">
+                    <form id="contactForm" class="scroll-reveal glass-card p-8 rounded-sm space-y-6" style="transition-delay: 0.15s;">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-xs text-zinc-500 uppercase tracking-wider mb-2">Your Name</label>
+                                <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm text-white text-sm placeholder-zinc-600 transition-all duration-300">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs text-zinc-500 uppercase tracking-wider mb-2">Your Email</label>
+                                <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm text-white text-sm placeholder-zinc-600 transition-all duration-300">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-xs text-zinc-500 uppercase tracking-wider mb-2">Subject</label>
+                            <input type="text" id="subject" required placeholder="What's this about?" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm text-white text-sm placeholder-zinc-600 transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-xs text-zinc-500 uppercase tracking-wider mb-2">Message</label>
+                            <textarea id="message" rows="5" required placeholder="Write your message here..." class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm text-white text-sm placeholder-zinc-600 transition-all duration-300 resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-gold text-dark font-semibold text-sm tracking-wide rounded-sm gold-glow hover:bg-gold-light transition-all duration-150 flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="border-t border-white/5 bg-dark-100">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+                        <span class="font-oswald text-gold text-sm font-semibold">K</span>
+                    </div>
+                    <span class="font-oswald text-lg tracking-tight text-zinc-400">Kamalpreet Kaur</span>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="flex items-center gap-6">
+                    <a href="#home" class="text-xs text-zinc-600 hover:text-gold transition-colors duration-150 tracking-wide">Home</a>
+                    <a href="#about" class="text-xs text-zinc-600 hover:text-gold transition-colors duration-150 tracking-wide">About</a>
+                    <a href="#education" class="text-xs text-zinc-600 hover:text-gold transition-colors duration-150 tracking-wide">Education</a>
+                    <a href="#skills" class="text-xs text-zinc-600 hover:text-gold transition-colors duration-150 tracking-wide">Skills</a>
+                    <a href="#contact" class="text-xs text-zinc-600 hover:text-gold transition-colors duration-150 tracking-wide">Contact</a>
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-xs text-zinc-700">
+                    © <span id="year"></span> Kamalpreet Kaur. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========== BACK TO TOP ========== -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center text-gold hover:bg-gold hover:text-dark transition-all duration-300 z-50 opacity-0 translate-y-4 pointer-events-none" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="w-5 h-5"></i>
+    </button>
+
+
+    <!-- ========== TOAST NOTIFICATION ========== -->
+    <div id="toast" class="toast fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] px-6 py-3 glass-card rounded-sm border border-gold/20 flex items-center gap-3">
+        <i data-lucide="check-circle" class="w-5 h-5 text-gold flex-shrink-0"></i>
+        <span id="toastMessage" class="text-sm text-white font-light"></span>
+    </div>
+
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ====== MOBILE MENU ======
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // ====== NAVBAR SCROLL EFFECT ======
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                navbar.style.borderBottomColor = 'rgba(255,255,255,0.05)';
+                navbar.style.background = 'rgba(17, 17, 17, 0.85)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // ====== ACTIVE NAV LINK ======
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ====== SCROLL REVEAL ======
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ====== SKILL BAR ANIMATION ======
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = width;
+                    entry.target.classList.add('filled');
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // ====== BACK TO TOP ======
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 600) {
+                backToTop.style.opacity = '1';
+                backToTop.style.transform = 'translateY(0)';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.transform = 'translateY(1rem)';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ====== CONTACT FORM ======
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && subject && message) {
+                showToast(`Thank you, ${name}! Your message has been sent successfully. 🎉`);
+                contactForm.reset();
+            }
+        });
+
+        // ====== TOAST NOTIFICATION ======
+        let toastTimeout;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            // Clear existing timeout
+            if (toastTimeout) clearTimeout(toastTimeout);
+
+            // Hide first if already showing
+            toast.classList.remove('show');
+
+            setTimeout(() => {
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            }, 50);
+        }
+
+        // ====== SMOOTH SCROLL FOR ALL ANCHORS ======
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = target.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ====== COUNTER ANIMATION (for fun stats) ======
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function update() {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    return;
+                }
+                element.textContent = Math.floor(start);
+                requestAnimationFrame(update);
+            }
+            update();
+        }
+    </script>
+</body>
+</html>
